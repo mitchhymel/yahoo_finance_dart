@@ -20,13 +20,13 @@ class OptionsResponse {
 
 class OptionChain {
   List<OptionsResult> result;
-  Null error;
+  dynamic error;
 
   OptionChain({this.result, this.error});
 
   OptionChain.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
-      result = new List<OptionsResult>();
+      result = [];
       json['result'].forEach((v) {
         result.add(new OptionsResult.fromJson(v));
       });
@@ -67,7 +67,7 @@ class OptionsResult {
     hasMiniOptions = json['hasMiniOptions'];
     quote = json['quote'] != null ? new OptionsQuote.fromJson(json['quote']) : null;
     if (json['options'] != null) {
-      options = new List<Options>();
+      options = [];
       json['options'].forEach((v) {
         options.add(new Options.fromJson(v));
       });
@@ -417,13 +417,13 @@ class Options {
     expirationDate = json['expirationDate'];
     hasMiniOptions = json['hasMiniOptions'];
     if (json['calls'] != null) {
-      calls = new List<Option>();
+      calls = [];
       json['calls'].forEach((v) {
         calls.add(new Option.fromJson(v));
       });
     }
     if (json['puts'] != null) {
-      puts = new List<Option>();
+      puts = [];
       json['puts'].forEach((v) {
         puts.add(new Option.fromJson(v));
       });

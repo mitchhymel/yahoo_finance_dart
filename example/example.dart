@@ -7,6 +7,6 @@ import 'package:yahoo_finance/yahoo_finance.dart';
 void main() async {
 
   var api = new YahooFinance(dioInterceptor: PrettyDioLogger());
-  var res = await api.historical('MSFT', start: DateTime.parse('2021-04-19'));
+  var res = await api.quoteSummary('msft');
   print(jsonEncode(res));
 }

@@ -69,8 +69,10 @@ class YahooFinance {
 
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/quoteSummary.md
   ///
-  /// TODO: Create model for QuoteSummaryResponse
-  Future<Map> quoteSummary(String symbol, {
+  /// To get all modules call it with:
+  /// quoteSummary('AAPL', modules: QuoteSummaryModules.values)
+  /// 
+  Future<QuoteSummaryResponse> quoteSummary(String symbol, {
     List<QuoteSummaryModules> modules=_defaultModules
   }) async {
     var response = await dio.get('$QUOTE_SUMMARY_PATH/$symbol',
@@ -78,7 +80,7 @@ class YahooFinance {
         'modules': modules.map((x) => EnumToString.convertToString(x)).join(',')
       }
     );
-    return response.data;
+    return QuoteSummaryResponse.fromJson(response.data);
   }
 
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/options.md
@@ -136,11 +138,27 @@ class YahooFinance {
 
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/search.md
   /// 
-  /// TODO: support query options
-  Future<Map> search(String query) async {
+  /// TODO: support rest of options
+  Future<Map> search(String query, {
+    String lang='en-US',
+    String region='US',
+    int quotesCount=5,
+    int newsCount=5,
+    // bool enableFuzzyQuery=false,
+    // String quotesQueryId='tss_match_phrase_query',
+    // String multiQuoteQueryId='multi_quote_single_token_query',
+    // String newsQueryId='news_cie_vespa',
+    // bool enableCb=true,
+    // bool enableNavLinks=true,
+    // bool enableEnhancedTrivialQuery=true,
+  }) async {
     var response = await dio.get('$SEARCH_PATH',
       queryParameters: {
-        'q': query
+        'q': query,
+        'lang': lang,
+        'region': region,
+        'quotesCount': quotesCount,
+        'newsCount': newsCount,
       }
     );
     return response.data;

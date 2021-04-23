@@ -1,6 +1,4 @@
 
-
-
 class HistoricalResult {
   DateTime date;
   double open;

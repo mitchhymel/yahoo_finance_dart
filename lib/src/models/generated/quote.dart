@@ -20,13 +20,13 @@ class QuoteResponse {
 
 class Quote {
   List<QuoteResult> result;
-  Null error;
+  dynamic error;
 
   Quote({this.result, this.error});
 
   Quote.fromJson(Map<String, dynamic> json) {
     if (json['result'] != null) {
-      result = new List<QuoteResult>();
+      result = [];
       json['result'].forEach((v) {
         result.add(new QuoteResult.fromJson(v));
       });
