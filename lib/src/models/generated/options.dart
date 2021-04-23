@@ -446,7 +446,7 @@ class Options {
 
 class Option {
   String contractSymbol;
-  int strike;
+  double strike;
   String currency;
   double lastPrice;
   double change;

@@ -34,12 +34,12 @@ class HistoricalResult {
     List<String> parts = line.split(',');
     return HistoricalResult(
       date: DateTime.parse(parts[0]),
-      open: double.parse(parts[1]),
-      high: double.parse(parts[2]),
-      low: double.parse(parts[3]),
-      close: double.parse(parts[4]),
-      adjustedClose: double.parse(parts[5]),
-      volume: int.parse(parts[6]),
+      open: parseDoubleElseNull(parts[1]),
+      high: parseDoubleElseNull(parts[2]),
+      low: parseDoubleElseNull(parts[3]),
+      close: parseDoubleElseNull(parts[4]),
+      adjustedClose: parseDoubleElseNull(parts[5]),
+      volume: parseIntElseNull(parts[6]),
     );
   }
 
@@ -57,5 +57,13 @@ class HistoricalResult {
     }
 
     return res;
+  }
+
+  static parseDoubleElseNull(String str) {
+    return str == 'null' ? null : double.parse(str);
+  }
+
+  static parseIntElseNull(String str) {
+    return str == 'null' ? null : int.parse(str);
   }
 }
