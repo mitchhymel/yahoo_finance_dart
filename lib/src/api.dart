@@ -40,13 +40,24 @@ class YahooFinance {
 
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/quote.md
   ///
-  /// TODO: Support fields and common options
-  Future<QuoteResponse> quote(List<String> symbols) async {
+  /// Certain fields are always returned, but you can specify a subset
+  /// of the fields returned with [fields]
+  Future<QuoteResponse> quote(List<String> symbols, {
+    List<QuoteFields> fields
+  }) async {
     var symbolsJoined = symbols.join(',');
+    Map<String, dynamic> queryParameters = {
+      'symbols': symbolsJoined,
+    };
+
+    if (fields != null) {
+      queryParameters.addAll({
+        'fields': fields.map((x) => EnumToString.convertToString(x)).toList()
+      });
+    }
+
     var response = await dio.get('$QUOTE_PATH',
-      queryParameters: {
-        'symbols': symbolsJoined
-      }
+      queryParameters: queryParameters
     );
     return QuoteResponse.fromJson(response.data);
   }
@@ -72,22 +83,35 @@ class YahooFinance {
 
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/options.md
   ///
-  /// TODO: Support query options
-  Future<OptionsResponse> options(String symbol) async {
-    var response = await dio.get('$OPTIONS_PATH/$symbol');
+  Future<OptionsResponse> options(String symbol, {
+    bool formatted=false,
+    String lang='en-US',
+    String region='US'
+  }) async {
+    var response = await dio.get('$OPTIONS_PATH/$symbol', 
+      queryParameters: {
+        'formatted': formatted,
+        'lang': lang,
+        'region': region,
+      }
+    );
     return OptionsResponse.fromJson(response.data);
   }
 
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/historical.md
   ///
-  /// TODO: support events and includeAdjustedCloase parameter
-  Future<String> historical(String symbol, {
+  /// TODO: Find out what [events] or [includeAdjustedClose] do
+  Future<List<HistoricalResult>> historical(String symbol, {
     DateTime start,
     DateTime end,
-    HistoricalIntervals interval=HistoricalIntervals.Day
+    HistoricalIntervals interval=HistoricalIntervals.Day,
+    String events='history',
+    bool includeAdjustedClose=true
   }) async {
     Map<String, dynamic> queryParameters = {
         'interval': strFromHistoricalInterval(interval), 
+        'includeAdjustedClose': includeAdjustedClose,
+        'events': events,
     };
 
     if (start != null) {
@@ -107,8 +131,7 @@ class YahooFinance {
       )
     );
 
-    // TODO: parse csv string into object
-    return response.data;
+    return HistoricalResult.fromCsvHistoricalResponse(response.data);
   }
 
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/search.md
