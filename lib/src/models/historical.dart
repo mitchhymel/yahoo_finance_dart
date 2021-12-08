@@ -1,12 +1,12 @@
 
 class HistoricalResult {
-  DateTime date;
-  double open;
-  double high;
-  double low;
-  double close;
-  double adjustedClose;
-  int volume;
+  DateTime? date;
+  double? open;
+  double? high;
+  double? low;
+  double? close;
+  double? adjustedClose;
+  int? volume;
 
   HistoricalResult({
     this.date,

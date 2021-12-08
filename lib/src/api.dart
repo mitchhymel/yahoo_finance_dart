@@ -12,7 +12,7 @@ class YahooFinance {
 
   static const String QUERY2_BASE_URI = 'https://query2.finance.yahoo.com/';
 
-  Dio dio;
+  late Dio dio;
   BaseOptions defaultDioOptions = BaseOptions(
     baseUrl: QUERY2_BASE_URI,
     connectTimeout: 5000,
@@ -24,8 +24,8 @@ class YahooFinance {
   );
 
   YahooFinance({
-    Interceptor dioInterceptor,
-    BaseOptions dioOptions,
+    Interceptor? dioInterceptor,
+    BaseOptions? dioOptions,
   }) {
     if (dioOptions == null) {
       dioOptions = defaultDioOptions;
@@ -43,7 +43,7 @@ class YahooFinance {
   /// Certain fields are always returned, but you can specify a subset
   /// of the fields returned with [fields]
   Future<QuoteResponse> quote(List<String> symbols, {
-    List<QuoteFields> fields
+    List<QuoteFields>? fields
   }) async {
     var symbolsJoined = symbols.join(',');
     Map<String, dynamic> queryParameters = {
@@ -104,8 +104,8 @@ class YahooFinance {
   ///
   /// TODO: Find out what [events] or [includeAdjustedClose] do
   Future<List<HistoricalResult>> historical(String symbol, {
-    DateTime start,
-    DateTime end,
+    DateTime? start,
+    DateTime? end,
     HistoricalIntervals interval=HistoricalIntervals.Day,
     String events='history',
     bool includeAdjustedClose=true
@@ -139,7 +139,7 @@ class YahooFinance {
   /// https://github.com/gadicc/node-yahoo-finance2/blob/devel/docs/modules/search.md
   /// 
   /// TODO: support rest of options
-  Future<Map> search(String query, {
+  Future<Map?> search(String query, {
     String lang='en-US',
     String region='US',
     int quotesCount=5,

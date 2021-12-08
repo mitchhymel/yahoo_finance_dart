@@ -1,5 +1,5 @@
 class QuoteResponse {
-  Quote quoteResponse;
+  Quote? quoteResponse;
 
   QuoteResponse({this.quoteResponse});
 
@@ -12,14 +12,14 @@ class QuoteResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.quoteResponse != null) {
-      data['quoteResponse'] = this.quoteResponse.toJson();
+      data['quoteResponse'] = this.quoteResponse!.toJson();
     }
     return data;
   }
 }
 
 class Quote {
-  List<QuoteResult> result;
+  List<QuoteResult>? result;
   dynamic error;
 
   Quote({this.result, this.error});
@@ -28,7 +28,7 @@ class Quote {
     if (json['result'] != null) {
       result = [];
       json['result'].forEach((v) {
-        result.add(new QuoteResult.fromJson(v));
+        result!.add(new QuoteResult.fromJson(v));
       });
     }
     error = json['error'];
@@ -37,7 +37,7 @@ class Quote {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.result != null) {
-      data['result'] = this.result.map((v) => v.toJson()).toList();
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
     }
     data['error'] = this.error;
     return data;
@@ -45,81 +45,81 @@ class Quote {
 }
 
 class QuoteResult {
-  String language;
-  String region;
-  String quoteType;
-  String quoteSourceName;
-  bool triggerable;
-  String currency;
-  String marketState;
-  double fiftyTwoWeekLow;
-  double fiftyTwoWeekHigh;
-  int dividendDate;
-  int earningsTimestamp;
-  int earningsTimestampStart;
-  int earningsTimestampEnd;
-  double trailingAnnualDividendRate;
-  double trailingPE;
-  double trailingAnnualDividendYield;
-  int firstTradeDateMilliseconds;
-  int priceHint;
-  double postMarketChangePercent;
-  int postMarketTime;
-  double postMarketPrice;
-  double postMarketChange;
-  double regularMarketChange;
-  double regularMarketChangePercent;
-  int regularMarketTime;
-  double regularMarketPrice;
-  double regularMarketDayHigh;
-  String regularMarketDayRange;
-  double regularMarketDayLow;
-  int regularMarketVolume;
-  double regularMarketPreviousClose;
-  double bid;
-  double ask;
-  int bidSize;
-  int askSize;
-  String fullExchangeName;
-  String financialCurrency;
-  double regularMarketOpen;
-  int averageDailyVolume3Month;
-  int averageDailyVolume10Day;
-  double fiftyTwoWeekLowChange;
-  double fiftyTwoWeekLowChangePercent;
-  String fiftyTwoWeekRange;
-  double fiftyTwoWeekHighChange;
-  double fiftyTwoWeekHighChangePercent;
-  String exchange;
-  String shortName;
-  String longName;
-  String messageBoardId;
-  String exchangeTimezoneName;
-  String exchangeTimezoneShortName;
-  int gmtOffSetMilliseconds;
-  String market;
-  bool esgPopulated;
-  double epsTrailingTwelveMonths;
-  double epsForward;
-  double epsCurrentYear;
-  double priceEpsCurrentYear;
-  int sharesOutstanding;
-  double bookValue;
-  double fiftyDayAverage;
-  double fiftyDayAverageChange;
-  double fiftyDayAverageChangePercent;
-  double twoHundredDayAverage;
-  double twoHundredDayAverageChange;
-  double twoHundredDayAverageChangePercent;
-  int marketCap;
-  double forwardPE;
-  double priceToBook;
-  int sourceInterval;
-  int exchangeDataDelayedBy;
-  String averageAnalystRating;
-  bool tradeable;
-  String displayName;
-  String symbol;
+  String? language;
+  String? region;
+  String? quoteType;
+  String? quoteSourceName;
+  bool? triggerable;
+  String? currency;
+  String? marketState;
+  double? fiftyTwoWeekLow;
+  double? fiftyTwoWeekHigh;
+  int? dividendDate;
+  int? earningsTimestamp;
+  int? earningsTimestampStart;
+  int? earningsTimestampEnd;
+  double? trailingAnnualDividendRate;
+  double? trailingPE;
+  double? trailingAnnualDividendYield;
+  int? firstTradeDateMilliseconds;
+  int? priceHint;
+  double? postMarketChangePercent;
+  int? postMarketTime;
+  double? postMarketPrice;
+  double? postMarketChange;
+  double? regularMarketChange;
+  double? regularMarketChangePercent;
+  int? regularMarketTime;
+  double? regularMarketPrice;
+  double? regularMarketDayHigh;
+  String? regularMarketDayRange;
+  double? regularMarketDayLow;
+  int? regularMarketVolume;
+  double? regularMarketPreviousClose;
+  double? bid;
+  double? ask;
+  int? bidSize;
+  int? askSize;
+  String? fullExchangeName;
+  String? financialCurrency;
+  double? regularMarketOpen;
+  int? averageDailyVolume3Month;
+  int? averageDailyVolume10Day;
+  double? fiftyTwoWeekLowChange;
+  double? fiftyTwoWeekLowChangePercent;
+  String? fiftyTwoWeekRange;
+  double? fiftyTwoWeekHighChange;
+  double? fiftyTwoWeekHighChangePercent;
+  String? exchange;
+  String? shortName;
+  String? longName;
+  String? messageBoardId;
+  String? exchangeTimezoneName;
+  String? exchangeTimezoneShortName;
+  int? gmtOffSetMilliseconds;
+  String? market;
+  bool? esgPopulated;
+  double? epsTrailingTwelveMonths;
+  double? epsForward;
+  double? epsCurrentYear;
+  double? priceEpsCurrentYear;
+  int? sharesOutstanding;
+  double? bookValue;
+  double? fiftyDayAverage;
+  double? fiftyDayAverageChange;
+  double? fiftyDayAverageChangePercent;
+  double? twoHundredDayAverage;
+  double? twoHundredDayAverageChange;
+  double? twoHundredDayAverageChangePercent;
+  int? marketCap;
+  double? forwardPE;
+  double? priceToBook;
+  int? sourceInterval;
+  int? exchangeDataDelayedBy;
+  String? averageAnalystRating;
+  bool? tradeable;
+  String? displayName;
+  String? symbol;
 
   QuoteResult(
       {this.language,

@@ -1,5 +1,5 @@
 class OptionsResponse {
-  OptionChain optionChain;
+  OptionChain? optionChain;
 
   OptionsResponse({this.optionChain});
 
@@ -12,14 +12,14 @@ class OptionsResponse {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.optionChain != null) {
-      data['optionChain'] = this.optionChain.toJson();
+      data['optionChain'] = this.optionChain!.toJson();
     }
     return data;
   }
 }
 
 class OptionChain {
-  List<OptionsResult> result;
+  List<OptionsResult>? result;
   dynamic error;
 
   OptionChain({this.result, this.error});
@@ -28,7 +28,7 @@ class OptionChain {
     if (json['result'] != null) {
       result = [];
       json['result'].forEach((v) {
-        result.add(new OptionsResult.fromJson(v));
+        result!.add(new OptionsResult.fromJson(v));
       });
     }
     error = json['error'];
@@ -37,7 +37,7 @@ class OptionChain {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.result != null) {
-      data['result'] = this.result.map((v) => v.toJson()).toList();
+      data['result'] = this.result!.map((v) => v.toJson()).toList();
     }
     data['error'] = this.error;
     return data;
@@ -45,12 +45,12 @@ class OptionChain {
 }
 
 class OptionsResult {
-  String underlyingSymbol;
-  List<int> expirationDates;
-  List<int> strikes;
-  bool hasMiniOptions;
-  OptionsQuote quote;
-  List<Options> options;
+  String? underlyingSymbol;
+  List<int>? expirationDates;
+  List<int>? strikes;
+  bool? hasMiniOptions;
+  OptionsQuote? quote;
+  List<Options>? options;
 
   OptionsResult(
       {this.underlyingSymbol,
@@ -69,7 +69,7 @@ class OptionsResult {
     if (json['options'] != null) {
       options = [];
       json['options'].forEach((v) {
-        options.add(new Options.fromJson(v));
+        options!.add(new Options.fromJson(v));
       });
     }
   }
@@ -81,91 +81,91 @@ class OptionsResult {
     data['strikes'] = this.strikes;
     data['hasMiniOptions'] = this.hasMiniOptions;
     if (this.quote != null) {
-      data['quote'] = this.quote.toJson();
+      data['quote'] = this.quote!.toJson();
     }
     if (this.options != null) {
-      data['options'] = this.options.map((v) => v.toJson()).toList();
+      data['options'] = this.options!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class OptionsQuote {
-  String language;
-  String region;
-  String quoteType;
-  String quoteSourceName;
-  bool triggerable;
-  String currency;
-  String marketState;
-  String exchange;
-  String shortName;
-  String longName;
-  String messageBoardId;
-  String exchangeTimezoneName;
-  String exchangeTimezoneShortName;
-  int gmtOffSetMilliseconds;
-  String market;
-  bool esgPopulated;
-  int firstTradeDateMilliseconds;
-  int priceHint;
-  double postMarketChangePercent;
-  int postMarketTime;
-  double postMarketPrice;
-  double postMarketChange;
-  double regularMarketChange;
-  double regularMarketChangePercent;
-  int regularMarketTime;
-  double regularMarketPrice;
-  double regularMarketDayHigh;
-  String regularMarketDayRange;
-  double regularMarketDayLow;
-  int regularMarketVolume;
-  double regularMarketPreviousClose;
-  double bid;
-  double ask;
-  int bidSize;
-  int askSize;
-  String fullExchangeName;
-  String financialCurrency;
-  double regularMarketOpen;
-  int averageDailyVolume3Month;
-  int averageDailyVolume10Day;
-  double fiftyTwoWeekLowChange;
-  double fiftyTwoWeekLowChangePercent;
-  String fiftyTwoWeekRange;
-  double fiftyTwoWeekHighChange;
-  double fiftyTwoWeekHighChangePercent;
-  double fiftyTwoWeekLow;
-  double fiftyTwoWeekHigh;
-  int dividendDate;
-  int earningsTimestamp;
-  int earningsTimestampStart;
-  int earningsTimestampEnd;
-  double trailingAnnualDividendRate;
-  double trailingPE;
-  double trailingAnnualDividendYield;
-  double epsTrailingTwelveMonths;
-  double epsForward;
-  double epsCurrentYear;
-  double priceEpsCurrentYear;
-  int sharesOutstanding;
-  double bookValue;
-  double fiftyDayAverage;
-  double fiftyDayAverageChange;
-  double fiftyDayAverageChangePercent;
-  double twoHundredDayAverage;
-  double twoHundredDayAverageChange;
-  double twoHundredDayAverageChangePercent;
-  int marketCap;
-  double forwardPE;
-  double priceToBook;
-  int sourceInterval;
-  int exchangeDataDelayedBy;
-  String averageAnalystRating;
-  bool tradeable;
-  String displayName;
-  String symbol;
+  String? language;
+  String? region;
+  String? quoteType;
+  String? quoteSourceName;
+  bool? triggerable;
+  String? currency;
+  String? marketState;
+  String? exchange;
+  String? shortName;
+  String? longName;
+  String? messageBoardId;
+  String? exchangeTimezoneName;
+  String? exchangeTimezoneShortName;
+  int? gmtOffSetMilliseconds;
+  String? market;
+  bool? esgPopulated;
+  int? firstTradeDateMilliseconds;
+  int? priceHint;
+  double? postMarketChangePercent;
+  int? postMarketTime;
+  double? postMarketPrice;
+  double? postMarketChange;
+  double? regularMarketChange;
+  double? regularMarketChangePercent;
+  int? regularMarketTime;
+  double? regularMarketPrice;
+  double? regularMarketDayHigh;
+  String? regularMarketDayRange;
+  double? regularMarketDayLow;
+  int? regularMarketVolume;
+  double? regularMarketPreviousClose;
+  double? bid;
+  double? ask;
+  int? bidSize;
+  int? askSize;
+  String? fullExchangeName;
+  String? financialCurrency;
+  double? regularMarketOpen;
+  int? averageDailyVolume3Month;
+  int? averageDailyVolume10Day;
+  double? fiftyTwoWeekLowChange;
+  double? fiftyTwoWeekLowChangePercent;
+  String? fiftyTwoWeekRange;
+  double? fiftyTwoWeekHighChange;
+  double? fiftyTwoWeekHighChangePercent;
+  double? fiftyTwoWeekLow;
+  double? fiftyTwoWeekHigh;
+  int? dividendDate;
+  int? earningsTimestamp;
+  int? earningsTimestampStart;
+  int? earningsTimestampEnd;
+  double? trailingAnnualDividendRate;
+  double? trailingPE;
+  double? trailingAnnualDividendYield;
+  double? epsTrailingTwelveMonths;
+  double? epsForward;
+  double? epsCurrentYear;
+  double? priceEpsCurrentYear;
+  int? sharesOutstanding;
+  double? bookValue;
+  double? fiftyDayAverage;
+  double? fiftyDayAverageChange;
+  double? fiftyDayAverageChangePercent;
+  double? twoHundredDayAverage;
+  double? twoHundredDayAverageChange;
+  double? twoHundredDayAverageChangePercent;
+  int? marketCap;
+  double? forwardPE;
+  double? priceToBook;
+  int? sourceInterval;
+  int? exchangeDataDelayedBy;
+  String? averageAnalystRating;
+  bool? tradeable;
+  String? displayName;
+  String? symbol;
 
   OptionsQuote(
       {this.language,
@@ -406,10 +406,10 @@ class OptionsQuote {
 }
 
 class Options {
-  int expirationDate;
-  bool hasMiniOptions;
-  List<Option> calls;
-  List<Option> puts;
+  int? expirationDate;
+  bool? hasMiniOptions;
+  List<Option>? calls;
+  List<Option>? puts;
 
   Options({this.expirationDate, this.hasMiniOptions, this.calls, this.puts});
 
@@ -419,13 +419,13 @@ class Options {
     if (json['calls'] != null) {
       calls = [];
       json['calls'].forEach((v) {
-        calls.add(new Option.fromJson(v));
+        calls!.add(new Option.fromJson(v));
       });
     }
     if (json['puts'] != null) {
       puts = [];
       json['puts'].forEach((v) {
-        puts.add(new Option.fromJson(v));
+        puts!.add(new Option.fromJson(v));
       });
     }
   }
@@ -435,31 +435,31 @@ class Options {
     data['expirationDate'] = this.expirationDate;
     data['hasMiniOptions'] = this.hasMiniOptions;
     if (this.calls != null) {
-      data['calls'] = this.calls.map((v) => v.toJson()).toList();
+      data['calls'] = this.calls!.map((v) => v.toJson()).toList();
     }
     if (this.puts != null) {
-      data['puts'] = this.puts.map((v) => v.toJson()).toList();
+      data['puts'] = this.puts!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Option {
-  String contractSymbol;
-  double strike;
-  String currency;
-  double lastPrice;
-  double change;
-  double percentChange;
-  int volume;
-  int openInterest;
-  double bid;
-  double ask;
-  String contractSize;
-  int expiration;
-  int lastTradeDate;
-  double impliedVolatility;
-  bool inTheMoney;
+  String? contractSymbol;
+  double? strike;
+  String? currency;
+  double? lastPrice;
+  double? change;
+  double? percentChange;
+  int? volume;
+  int? openInterest;
+  double? bid;
+  double? ask;
+  String? contractSize;
+  int? expiration;
+  int? lastTradeDate;
+  double? impliedVolatility;
+  bool? inTheMoney;
 
   Option(
       {this.contractSymbol,
